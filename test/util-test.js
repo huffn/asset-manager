@@ -157,14 +157,14 @@ describe("Utils tests", function(){
   describe("getListOfAllFiles", function() {
     it("should find all assets in path", function(done) {
       this.utils.getListOfAllFiles(["test/app3"])(function(err, files) {
-        expect(files).to.have.length(24);
+        expect(files).to.have.length(25);
         done();
       });
     });
 
     it("should find all assets in multiple paths", function(done) {
       this.utils.getListOfAllFiles(["test/app3", "test/app1"])(function(err, files) {
-        expect(files).to.have.length(62);
+        expect(files).to.have.length(63);
         done();
       });
     });
