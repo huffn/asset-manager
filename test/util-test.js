@@ -191,7 +191,7 @@ describe("Utils tests", function(){
   describe("Test expandPaths", function(){
     it("expand a single path", function(done){
       var basePaths = ['test/app1'];
-      this.utils.expandPaths(basePaths, false, function(paths) {
+      this.utils.expandPaths(basePaths, false, null, function(paths) {
         assert.equal(paths.length, 1);
         assert.equal(paths[0], "test/app1");
         done();
@@ -212,7 +212,7 @@ describe("Utils tests", function(){
 
     it("expand multiple paths", function(done){
       var basePaths = ['test/app1', 'test/app2'];
-      this.utils.expandPaths(basePaths, false, function(paths) {
+      this.utils.expandPaths(basePaths, false, null, function(paths) {
         assert.equal(paths.length, 2);
         assert.notEqual(paths.indexOf("test/app1"), -1);
         assert.notEqual(paths.indexOf("test/app2"), -1);
@@ -222,7 +222,7 @@ describe("Utils tests", function(){
 
     it("expand wildcard path", function(done){
       var basePaths = ['test/app*'];
-      this.utils.expandPaths(basePaths, false, function(paths) {
+      this.utils.expandPaths(basePaths, false, null, function(paths) {
         assert.equal(paths.length, 5);
         assert.notEqual(paths.indexOf("test/app1"), -1);
         assert.notEqual(paths.indexOf("test/app2"), -1);
@@ -235,7 +235,7 @@ describe("Utils tests", function(){
 
     it("expand with scanDir path", function(done){
       var basePaths = ['test/app1'];
-      this.utils.expandPaths(basePaths, "test/test_modules", function(paths) {
+      this.utils.expandPaths(basePaths, "test/test_modules", null, function(paths) {
         assert.equal(paths.length, 2);
         assert.notEqual(paths.indexOf("test/app1"), -1);
         assert.notEqual(paths.indexOf("test/test_modules/moduleWithControls/assets"), -1);
@@ -243,9 +243,19 @@ describe("Utils tests", function(){
       });
     });
 
+    it("expand with cacheFile path", function(done) {
+      var basePaths = ['test/app1'];
+      this.utils.expandPaths(basePaths, "test/test_modules", "test/test_modules/cache.json", function(paths) {
+        assert.equal(paths.length, 2);
+        assert.notEqual(paths.indexOf("test/app1"), -1);
+        assert.notEqual(paths.indexOf("test/no_search/assets"), -1);
+        done();
+      });
+    });
+
     it("expand invalid path", function(done){
       var basePaths = ['noPath/here'];
-      this.utils.expandPaths(basePaths, false, function(paths) {
+      this.utils.expandPaths(basePaths, false, null, function(paths) {
         assert.equal(paths.length, 0);
         done();
       });
