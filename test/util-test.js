@@ -245,7 +245,7 @@ describe("Utils tests", function(){
 
     it("expand with cacheFile path", function(done) {
       var basePaths = ['test/app1'];
-      this.utils.expandPaths(basePaths, "test/test_modules", "test/test_modules/cache.json", function(paths) {
+      this.utils.expandPaths(basePaths, "test/test_modules", process.cwd() + "/test/test_modules/cache.json", function(paths) {
         assert.equal(paths.length, 2);
         assert.notEqual(paths.indexOf("test/app1"), -1);
         assert.notEqual(paths.indexOf("test/no_search/assets"), -1);
