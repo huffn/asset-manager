@@ -77,8 +77,9 @@ If you like, you can pass any of these options to the `start` or `precompile` fu
 * `servePath` (defaults to ''): The path you want to append to all asset URLs.  Useful for pointing at an external CDN location.
 * `builtAssets` (defaults to 'builtAssets'): The folder you want precompiled assets to be placed in.
 * `context` (defaults to global): The object you want to hang the 'css', 'js', and 'img' functions on for resolving static assets.
-* `gzip` (defaults to false): Whether or not to gzip the contents of 'css' and 'js' files.
+* `gzip` (defaults to `false`): Whether or not to gzip the contents of 'css' and 'js' files.
 * `scanDir` (defaults to ''): Include a base path you want asset-manager to scan for modules that contain `asset-manifest.json` files indicating the module contains static assets that should be available for use.
+* `cacheFile` (defaults to `null`): A full path to the location of a cache file for the `asset-manifest.json` files. If used, this stores the results in this file, so for any new changes, simply delete that file.
 
 # USAGE
 
